@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Colcul"
         mc:Ignorable="d"
-        Title="Калькулятор" Height="355" Width="296">
+        Title="Калькулятор" Height="349" Width="277" ResizeMode="NoResize">
     <Grid x:Name="Main">
         <Button x:Name="Button7" Content="7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="52" Height="36" Margin="13,138,0,0"/>
         <Button x:Name="Button8" Content="8" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Height="36" Margin="73,138,0,0"/>

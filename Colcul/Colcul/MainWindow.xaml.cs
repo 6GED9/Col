@@ -46,33 +46,45 @@ namespace Colcul
             else if (str == "=")
             {
                 string s = labelsec.Content.ToString();
-                string s2 = s.Substring(s.Length-1);
-                if (labelosn.Content == "")
+                if (labelsec.Content != "")
                 {
-                    if (s2 == "+")
+                    string s2 = s.Substring(s.Length - 1);
+                    if (labelosn.Content == "")
                     {
-                        s = s.Remove(s.Length - 1);
-                        labelsec.Content = s;
-                    }
-                    else if (s2 == "-")
-                    {
-                        s = s.Remove(s.Length - 1);
-                        labelsec.Content = s;
-                    }
-                    else if (s2 == "/")
-                    {
-                        s = s.Remove(s.Length - 1);
-                        labelsec.Content = s;
-                    }
-                    else if (s2 == "*")
-                    {
-                        s = s.Remove(s.Length - 1);
-                        labelsec.Content = s;
+                        if (s2 == "+")
+                        {
+                            s = s.Remove(s.Length - 1);
+                            labelsec.Content = s;
+                        }
+                        else if (s2 == "-")
+                        {
+                            s = s.Remove(s.Length - 1);
+                            labelsec.Content = s;
+                        }
+                        else if (s2 == "/")
+                        {
+                            s = s.Remove(s.Length - 1);
+                            labelsec.Content = s;
+                        }
+                        else if (s2 == "*")
+                        {
+                            s = s.Remove(s.Length - 1);
+                            labelsec.Content = s;
+                        }
                     }
                 }
                 labelsec.Content += labelosn.Content.ToString();
-                string value = new DataTable().Compute(labelsec.Content.ToString(), null).ToString();
+                string value;
+                try
+                {
+                    value = new DataTable().Compute(labelsec.Content.ToString(), null).ToString();
+                }
+                catch
+                {
+                    value = "∞";
+                }
                 labelosn.Content = value;
+                labelsec.Content = "";
             }
             else if (str == "+/-")
             {
@@ -89,100 +101,70 @@ namespace Colcul
                     labelosn.Content = s;
                 }
             }
-            else if (str == "+")
-            {
-                labelosn.Content += str;
+                    else if (str == "+")
+                    {
+                        labelosn.Content += str;
+                if (labelsec.Content != "" && labelosn.Content.ToString().Length == 1)
+                {
+                    string s = labelsec.Content.ToString();
+                    if (labelsec.Content.ToString().Last() == '+' || labelsec.Content.ToString().Last() == '-' || labelsec.Content.ToString().Last() == '*' || labelsec.Content.ToString().Last() == '/')
+                    {
+                        s = s.Remove(s.Length - 1);
+                        labelsec.Content = s;
+                    }
+                }
+                    labelsec.Content += labelosn.Content.ToString();
+                        labelosn.Content = "";
+                    }
+                    else if (str == "-")
+                    {
+                        labelosn.Content += str;
+                if (labelsec.Content != "" && labelosn.Content.ToString().Length == 1)
+                {
+                    string s = labelsec.Content.ToString();
+                    if (labelsec.Content.ToString().Last() == '+' || labelsec.Content.ToString().Last() == '-' || labelsec.Content.ToString().Last() == '*' || labelsec.Content.ToString().Last() == '/')
+                    {
+                        s = s.Remove(s.Length - 1);
+                        labelsec.Content = s;
+                    }
+                }
                 labelsec.Content += labelosn.Content.ToString();
-                labelosn.Content = "";
-            }
-            else if (str == "-")
-            {
-                labelosn.Content += str;
+                        labelosn.Content = "";
+                    }
+                    else if (str == "*")
+                    {
+                        labelosn.Content += str;
+                if (labelsec.Content != "" && labelosn.Content.ToString().Length == 1)
+                {
+                    string s = labelsec.Content.ToString();
+                    if (labelsec.Content.ToString().Last() == '+' || labelsec.Content.ToString().Last() == '-' || labelsec.Content.ToString().Last() == '*' || labelsec.Content.ToString().Last() == '/')
+                    {
+                        s = s.Remove(s.Length - 1);
+                        labelsec.Content = s;
+                    }
+                }
                 labelsec.Content += labelosn.Content.ToString();
-                labelosn.Content = "";
-            }
-            else if (str == "*")
-            {
-                labelosn.Content += str;
+                        labelosn.Content = "";
+                    }
+                    else if (str == "/")
+                    {
+                        labelosn.Content += str;
+                if (labelsec.Content != "" && labelosn.Content.ToString().Length == 1)
+                {
+                    string s = labelsec.Content.ToString();
+                    if (labelsec.Content.ToString().Last() == '+' || labelsec.Content.ToString().Last() == '-' || labelsec.Content.ToString().Last() == '*' || labelsec.Content.ToString().Last() == '/')
+                    {
+                        s = s.Remove(s.Length - 1);
+                        labelsec.Content = s;
+                    }
+                }
                 labelsec.Content += labelosn.Content.ToString();
-                labelosn.Content = "";
-            }
-            else if (str == "/")
-            {
-                labelosn.Content += str;
-                labelsec.Content += labelosn.Content.ToString();
-                labelosn.Content = "";
-            }
-            else
-            {
-                labelosn.Content += str;
+                        labelosn.Content = "";
+                    }
+                    else
+                    {
+                        labelosn.Content += str;
+                    }
             }
         }
-        //public void Button1_Click(object sender, RoutedEventArgs e)
-        //{
-        //    osn += "1";
-        //    labelosn.Content += "1";
-        //}
-        //public void Button2_Click(object sender, RoutedEventArgs e)
-        //{
-        //    osn += "2";
-        //    labelosn.Content += "2";
-        //}
-        //public void Button3_Click(object sender, RoutedEventArgs e)
-        //{
-        //    osn += "3";
-        //    labelosn.Content += "3";
-        //}
-        //public void Button4_Click(object sender, RoutedEventArgs e)
-        //{
-        //    osn += "4";
-        //    labelosn.Content += "4";
-        //}
-        //public void Button5_Click(object sender, RoutedEventArgs e)
-        //{
-        //    osn += "5";
-        //    labelosn.Content += "5";
-        //}
-        //public void Button6_Click(object sender, RoutedEventArgs e)
-        //{
-        //    osn += "6";
-        //    labelosn.Content += "6";
-        //}
-        //public void Button7_Click(object sender, RoutedEventArgs e)
-        //{
-        //    osn += "7";
-        //    labelosn.Content += "7";
-        //}
-        //public void Button8_Click(object sender, RoutedEventArgs e)
-        //{
-        //    osn += "8";
-        //    labelosn.Content += "8";
-        //}
-        //public void Button9_Click(object sender, RoutedEventArgs e)
-        //{
-        //    osn += "9";
-        //    labelosn.Content += "9";
-        //}
-        //public void Button0_Click(object sender, RoutedEventArgs e)
-        //{
-        //    osn += "0";
-        //    labelosn.Content += "0";
-        //}
-        //public void Buttonplus_Click(object sender, RoutedEventArgs e)
-        //{
-        //    osn = int.Parse(osn).ToString();
-        //    labelosn.Content = "+";
-        //}
-        //public void Buttonmin_Click(object sender, RoutedEventArgs e)
-        //{
-        //    osn += "-";
-        //    labelosn.Content += "-";
-        //}
-        //public void Buttonres_Click(object sender, RoutedEventArgs e)
-        //{
-        //    labelsec.Content = labelosn.Content;
-        //    labelosn = osn.GetType();
-        //    labelosn.Content = .ToString();
-        //}
     }
-}
